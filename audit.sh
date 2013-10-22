@@ -1,8 +1,13 @@
 #!/bin/bash
+hostScan="127.0.0.1"
 function exportPermissoes () { 
-	listAll=$(ls -l)
-	echo "$listAll"
+	listPer=$(ls -l)
+	echo "$listPer" >> listPer.log
 
 }
-
-exportPermissoes
+ function scan () {
+ 	listScan=$(nmap -v $hostScan)
+ 	echo "$listScan" >> listScan.log
+ }
+#exportPermissoes
+scan
