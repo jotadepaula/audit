@@ -9,5 +9,11 @@ function exportPermissoes () {
  	listScan=$(nmap -v $hostScan)
  	echo "$listScan" >> listScan.log
  }
-#exportPermissoes
+
+ function verCompartilhamentos() {
+ 	samba=$(smbclient -L 127.0.0.1 -N)
+ 	echo "$samba" >> verCompartilhamentos.log
+ }
+exportPermissoes
 scan
+verCompartilhamentos
