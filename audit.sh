@@ -1,12 +1,18 @@
 #!/bin/bash
 
+#Função que exporta permissões de um dirétório passado como parametro
+#Salva o arquivo listPer.cvs para ser importado no excel
+
 function exportPermissoes () { 
-	listPer=$(ls -l $1)
+	listPer=$(ls -l $1 -R)
 	echo -e "Exportando permissoes..."
 	echo "$listPer" >> listPer.cvs
 	echo -e "Permissoes exportadas com Sucesso"
 
 }
+
+#Função que scaneia um ip recebido como parametro e exporta o resultado no arquivo listScan.cvs 
+
  function scan () {
 	listScan=$(nmap -v $1)
  	echo -e "escaneado IP ... "
@@ -15,6 +21,8 @@ function exportPermissoes () {
  	echo -e "Escaneamento conluido com sucesso "
  }
 
+#Função que verifica os compartilhamentos de um endereço numa rede através do Samba
+
  function verCompartilhamentos() {
   	echo -e " verificando Compartilhamentos..."
   	echo -e "Exportando resultados ..."
@@ -22,7 +30,9 @@ function exportPermissoes () {
  	echo "$samba" >> verCompartilhamentos.cvs
  	echo -e "Verifcação conluida com sucesso "
  }
- 
+
+#inicia o Programa
+
 echo -e "digite o IP a ser escaneado:"
 read hostScan
 scan "$hostScan"
